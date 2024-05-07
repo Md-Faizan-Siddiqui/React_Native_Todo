@@ -1,9 +1,6 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import AddTodo from '../Screens/AddTodo'
-import { Add_Todo, Todo_List } from './Path'
-import TodoList from '../Screens/TodoList'
 import { Routes } from './Route'
 const Stack = createNativeStackNavigator()
 

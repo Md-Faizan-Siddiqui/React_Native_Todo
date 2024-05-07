@@ -13,14 +13,20 @@ const TodoList = () => {
     navigate(Edit_Todo, { TodoInd: index, itemText: itemText })
   }
 
+  const handleDone = (ind) => {
+    const updatedTodos = [...todos];
+    updatedTodos[ind].isDone = !updatedTodos[ind].isDone;
+    editTodo(updatedTodos);
+  };
+
   return (<>
     <View style={[styles.todoItemMain]}>
       {!todos?.length ? <Text style={[styles.todoItemText]}>No Data Found</Text> : todos?.map((item, ind) => (
         <View key={ind} style={[styles.todoItemCard]}>
-          <Text style={[styles.todoItemText]}>{item.text}</Text>
+          <Text style={[styles.todoItemText, item.isDone ? styles.MAD : { textDecorationLine: "none" }]}>{item.text}</Text>
           <View style={[styles.todoItemAction]}>
             <TouchableOpacity style={[styles.actionBtns]} onPress={() => handleEditTodo(ind, item.text)}><Text style={[styles.btnText]}>Edit</Text></TouchableOpacity>
-            <TouchableOpacity style={[styles.actionBtns]}><Text style={[styles.btnText]}>Mark As Done</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.actionBtns]} onPress={() => handleDone(ind)}><Text style={[styles.btnText]}>Mark As Done</Text></TouchableOpacity>
             <TouchableOpacity style={[styles.actionBtns]} onPress={() => deleteTodo(ind)}><Text style={[styles.btnText]}>Delete</Text></TouchableOpacity>
           </View>
         </View>
@@ -39,6 +45,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     flex: 1
 
+  },
+  MAD: {
+    textDecorationLine: "line-through"
   },
   todoItemCard: {
     backgroundColor: "#363636",

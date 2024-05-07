@@ -1,23 +1,16 @@
-import React, { useContext, useState, useEffect } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import React, { useContext, useState } from "react";
+import { View, TextInput, Button, StyleSheet } from "react-native";
 import { useNavigation, useRoute } from '@react-navigation/native';
 import TodoContext from "../Context/Todo/TodoContext";
 import BottomTab from "../Components/BottomTab";
 
 
 const EditTodo = () => {
-    const { todos, editTodo } = useContext(TodoContext);
+    const { editTodo } = useContext(TodoContext);
     const navigation = useNavigation();
     const route = useRoute();
-    const { TodoInd,itemText } = route.params;
-
+    const { TodoInd, itemText } = route.params;
     const [editedText, setEditedText] = useState(itemText);
-
-    // useEffect(() => {
-    //     if (todos && todos[todoIndex]) {
-    //         setEditedText(todos[todoIndex].text);
-    //     }
-    // }, [todos, todoIndex]);
 
     const handleEdit = () => {
         editTodo(TodoInd, editedText);
